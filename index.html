@@ -1,114 +1,91 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>あぐりの研究所</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>榊あぐり</title>
+
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- iPhone PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#111111">
+
+  <link rel="apple-touch-icon" href="zicon.png">
 </head>
 <body>
 
-  <!-- パスワード画面 -->
-  <section id="password-screen" class="screen active">
-    <div class="card">
-      <h1>あぐりの研究所</h1>
-      <p>パスワードを入力してください</p>
-
-      <input type="password" id="password-input" placeholder="パスワード">
-      <button id="password-btn">入室</button>
-
-      <p id="password-error"></p>
+  <!-- パスワード -->
+  <div id="passwordScreen" class="screen">
+    <div class="passwordBox">
+      <h1>ENTER</h1>
+      <input type="password" id="passwordInput" placeholder="Password">
+      <button id="passwordBtn">入室</button>
     </div>
-  </section>
-
-  <!-- タイトル画面 -->
-  <section id="title-screen" class="screen">
-    <img src="title.png" class="title-image">
-
-    <button id="start-btn" class="main-btn">
-      入る
-    </button>
-  </section>
-
-  <!-- 研究所 -->
-  <section id="lab-screen" class="screen">
-
-    <div id="pt-display">
-      PT: <span id="pt-text">0</span>
-    </div>
-
-    <img src="zaguri.png" class="aguri-image">
-
-    <div class="menu-buttons">
-      <button id="talk-btn" class="main-btn">話す</button>
-      <button id="game-btn" class="main-btn">実験</button>
-      <button id="gallery-btn" class="main-btn">ギャラリー</button>
-    </div>
-
-    <div id="dialog-box">
-      <p id="dialog-text">ようこそ、研究所へ♪</p>
-    </div>
-
-  </section>
-
-  <!-- 実験説明 -->
-  <section id="game-info-screen" class="screen">
-    <div class="card">
-      <h2>実験説明</h2>
-
-      <p>
-        10秒間で、画面を<br>
-        できるだけタップ！
-      </p>
-
-      <p>
-        沢山ビクンビクンさせよう！
-      </p>
-
-      <button id="game-start-btn" class="main-btn">
-        実験開始
-      </button>
-
-      <button class="back-btn">
-        戻る
-      </button>
-    </div>
-  </section>
-
-  <!-- ゲーム -->
- <section id="game-screen" class="screen">
-
-  <div id="tap-area">
-
-    <div id="top-ui">
-      <p id="timer-text">10</p>
-    </div>
-
-    <img src="shori.png" class="tap-image">
-
-    <div id="bottom-ui">
-      <p id="tap-count">0 TAP</p>
-    </div>
-
   </div>
 
-  <div id="game-result"></div>
+  <!-- タイトル -->
+  <div id="titleScreen" class="screen hidden">
+    <img src="title.png" class="bg">
+    <button id="startBtn" class="mainButton">入る</button>
+  </div>
 
-</section>
+  <!-- メイン -->
+  <div id="mainScreen" class="screen hidden">
+    <img src="zaguri.png" class="bg">
 
-</section>
+    <div class="ptBox">
+      PT: <span id="ptText">0</span>
+    </div>
+
+    <div class="menuButtons">
+      <button id="talkBtn">話す</button>
+      <button id="playBtn">遊ぶ</button>
+      <button id="galleryBtn">ギャラリー</button>
+    </div>
+
+    <div id="dialogueBox" class="dialogue hidden"></div>
+  </div>
+
+  <!-- じゃんけん -->
+  <div id="playScreen" class="screen hidden">
+    <img src="play.png" class="bg">
+
+    <div class="dialogue" id="playDialogue">
+      あぐりとじゃんけんしよう。<br>
+      何を出すか選んでね
+    </div>
+
+    <div class="handButtons" id="handButtons">
+      <button onclick="playGame('グー')">グー</button>
+      <button onclick="playGame('チョキ')">チョキ</button>
+      <button onclick="playGame('パー')">パー</button>
+    </div>
+
+    <button class="backButton" onclick="backMain()">戻る</button>
+  </div>
+
   <!-- ギャラリー -->
-  <section id="gallery-screen" class="screen">
+  <div id="galleryScreen" class="screen hidden">
 
-    <h2>ギャラリー</h2>
+    <div class="galleryTop">
+      <div>GALLERY</div>
+      <div>PT: <span id="galleryPt">0</span></div>
+    </div>
 
-    <div id="gallery-grid"></div>
+    <div id="galleryGrid" class="galleryGrid"></div>
 
-    <button class="back-btn">
-      戻る
-    </button>
+    <button class="backButton" onclick="backMain()">戻る</button>
+  </div>
 
-  </section>
+  <!-- 拡大表示 -->
+  <div id="viewer" class="viewer hidden">
+    <img id="viewerImg">
+  </div>
 
   <script src="script.js"></script>
 </body>

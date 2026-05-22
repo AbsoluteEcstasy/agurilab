@@ -1,0 +1,15 @@
+{
+  "name": "榊あぐり",
+  "short_name": "あぐり",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#111111",
+  "start_url": "./index.html",
+  "icons": [
+    {
+      "src": "zicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
