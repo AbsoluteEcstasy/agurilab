@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>あぐりの研究所</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- パスワード画面 -->
+  <section id="password-screen" class="screen active">
+    <div class="card">
+      <h1>あぐりの研究所</h1>
+      <p>パスワードを入力してください</p>
+
+      <input type="password" id="password-input" placeholder="パスワード">
+      <button id="password-btn">入室</button>
+
+      <p id="password-error"></p>
+    </div>
+  </section>
+
+  <!-- タイトル画面 -->
+  <section id="title-screen" class="screen">
+    <img src="images/title.png" class="title-image">
+
+    <button id="start-btn" class="main-btn">
+      入る
+    </button>
+  </section>
+
+  <!-- 研究所 -->
+  <section id="lab-screen" class="screen">
+
+    <div id="pt-display">
+      PT: <span id="pt-text">0</span>
+    </div>
+
+    <img src="images/aguri.png" class="aguri-image">
+
+    <div class="menu-buttons">
+      <button id="talk-btn" class="main-btn">話す</button>
+      <button id="game-btn" class="main-btn">実験</button>
+      <button id="gallery-btn" class="main-btn">ギャラリー</button>
+    </div>
+
+    <div id="dialog-box">
+      <p id="dialog-text">ようこそ、研究所へ♪</p>
+    </div>
+
+  </section>
+
+  <!-- 実験説明 -->
+  <section id="game-info-screen" class="screen">
+    <div class="card">
+      <h2>実験説明</h2>
+
+      <p>
+        上から落ちてくる毒薬が、<br>
+        勝利にぶつかる前にタップで止めよう！
+      </p>
+
+      <p>
+        ギリギリなほど高得点！
+      </p>
+
+      <button id="game-start-btn" class="main-btn">
+        実験開始
+      </button>
+
+      <button class="back-btn">
+        戻る
+      </button>
+    </div>
+  </section>
+
+  <!-- ゲーム -->
+  <section id="game-screen" class="screen">
+
+    <div class="game-area">
+
+      <img src="images/poison.png" id="poison">
+
+      <img src="images/shori.png" id="target">
+
+    </div>
+
+    <p id="game-result"></p>
+
+    <button id="stop-btn" class="main-btn">
+      止める
+    </button>
+
+  </section>
+
+  <!-- ギャラリー -->
+  <section id="gallery-screen" class="screen">
+
+    <h2>ギャラリー</h2>
+
+    <div id="gallery-grid"></div>
+
+    <button class="back-btn">
+      戻る
+    </button>
+
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f0ff;
+  font-family: sans-serif;
+  color: #222;
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+.active {
+  display: block;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  margin-top: 100px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.title-image {
+  width: 100%;
+  max-width: 430px;
+  margin-top: 60px;
+  border-radius: 20px;
+}
+
+.main-btn,
+.back-btn {
+  width: 220px;
+  max-width: 90%;
+  padding: 15px;
+  border: none;
+  border-radius: 999px;
+  font-size: 18px;
+  margin-top: 15px;
+  background: #8c74ff;
+  color: white;
+}
+
+input {
+  width: 90%;
+  max-width: 300px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+#password-error {
+  color: red;
+}
+
+#pt-display {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+.aguri-image {
+  width: 100%;
+  max-width: 380px;
+  margin-top: 40px;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#dialog-box {
+  background: white;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 20px;
+  min-height: 100px;
+}
+
+.game-area {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 600px;
+  margin: auto;
+  background: white;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+#poison {
+  width: 80px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#target {
+  width: 220px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#game-result {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.gallery-item {
+  background: white;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.gallery-item img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.locked {
+  opacity: 0.4;
+}
