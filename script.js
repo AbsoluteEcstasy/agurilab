@@ -22,7 +22,12 @@ const normalTalks = [
   "今日も来てくれたのね",
   "あなたと話すの、嫌いじゃないわ",
   "ふふっ、何を考えてるの？",
+  "次は勝利に何をしましょうか",
+  "お腹が空いたわね……",
   "今日は少し機嫌がいいの",
+  "閣下はお元気かしら",
+  "今日のノルマは済んだ？",
+  "そんなに私が気になる？",
   "データが足りないわ",
   "年齢？……秘密よ",
   "実験開始よ"
@@ -66,7 +71,7 @@ document.getElementById("talkBtn").onclick = () => {
   dialogBox.classList.remove("hidden");
 
   if(talkCount === 100){
-    dialogBox.innerText = "100回も会いに来るなんて…本当に物好きね。でも、嫌いじゃないわ";
+    dialogBox.innerText = "100回も会いに来るなんて…本当に物好きね。";
   }else{
     dialogBox.innerText = normalTalks[Math.floor(Math.random() * normalTalks.length)];
   }
