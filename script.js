@@ -118,17 +118,17 @@ if(aguri === "グー"){
   let gain = 0;
 
   if(player === aguri){
-    result = "あら、気が合うわね";
+    result = "「あら、気が合うわね」";
     gain = 2;
   }else if(
     (player === "グー" && aguri === "チョキ") ||
     (player === "チョキ" && aguri === "パー") ||
     (player === "パー" && aguri === "グー")
   ){
-    result = "あなたの勝ちよ";
+    result = "「あなたの勝ちよ」";
     gain = 5;
   }else{
-    result = "ふふっ、私の勝ち";
+    result = "「ふふっ、私の勝ち」";
     gain = 1;
   }
 
@@ -139,7 +139,7 @@ if(aguri === "グー"){
   playDialog.innerHTML = `
     あぐり「${aguri}」<br><br>
     ${result}<br>
-    ${gain}pt獲得
+  〈${gain}pt獲得〉
   `;
 }
 

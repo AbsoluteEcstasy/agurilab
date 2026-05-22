@@ -115,17 +115,30 @@ button{
   transform:translate(-50%,-50%);
   width:88%;
   min-height:120px;
-  background:rgba(0,0,0,0.85);
+
+  /* ← 透明度を上げる（薄くする） */
+  background:rgba(0,0,0,0.55);
+
   border:2px solid #3cff7a;
   color:white;
   border-radius:20px;
   padding:20px;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   text-align:center;
   line-height:1.7;
   font-size:20px;
+
+  /* ← 文字縁取り */
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0px  0px 6px #000;
 }
 
 .hidden{
