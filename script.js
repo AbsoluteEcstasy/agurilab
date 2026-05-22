@@ -135,18 +135,44 @@ document.getElementById("stop-btn").addEventListener("click", () => {
 
   clearInterval(gameLoop);
 
-  const targetTop = 470;
+  const poisonRect = poison.getBoundingClientRect();
 
-  const distance = targetTop - poisonY;
+  const targetRect = target.getBoundingClientRect();
+
+  const distance =
+    targetRect.top - poisonRect.bottom;
 
   let gained = 0;
 
-  if (distance <= 20 && distance > 0) {
+  // 当たった
+  if (distance < 0) {
+
+    gained = 0;
+
+  }
+  // 超ギリギリ
+  else if (distance <= 10) {
+
     gained = 30;
-  } else if (distance <= 60) {
+
+  }
+  // かなり近い
+  else if (distance <= 35) {
+
     gained = 10;
-  } else if (distance <= 120) {
+
+  }
+  // 普通
+  else if (distance <= 80) {
+
     gained = 2;
+
+  }
+  // 遠い
+  else {
+
+    gained = 0;
+
   }
 
   pt += gained;
@@ -159,10 +185,13 @@ document.getElementById("stop-btn").addEventListener("click", () => {
     gained + "pt 獲得！";
 
   setTimeout(() => {
+
     showScreen("lab-screen");
+
   }, 1500);
 
 });
+
 
 // ギャラリー
 function createGallery() {
