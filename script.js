@@ -1,5 +1,7 @@
 const PASSWORD = "a";
 
+let dialogTimer = null;
+
 const screens = {
   password: document.getElementById("passwordScreen"),
   title: document.getElementById("titleScreen"),
@@ -16,11 +18,13 @@ let talkCount = Number(localStorage.getItem("talkCount")) || 0;
 let unlocked = JSON.parse(localStorage.getItem("unlocked")) || [];
 
 const normalTalks = [
-  "今日は来てくれたのね",
+  "今日も来てくれたのね",
   "あなたと話すの、嫌いじゃないわ",
   "ふふっ、何を考えてるの？",
   "今日は少し機嫌がいいの",
-  "ちゃんと見ていてね"
+  "データが足りないわ",
+  "年齢？……秘密よ",
+  "実験開始よ"
 ];
 
 function saveData(){
@@ -54,6 +58,7 @@ document.getElementById("startBtn").onclick = () => {
 };
 
 document.getElementById("talkBtn").onclick = () => {
+
   talkCount++;
   localStorage.setItem("talkCount", talkCount);
 
@@ -65,7 +70,11 @@ document.getElementById("talkBtn").onclick = () => {
     dialogBox.innerText = normalTalks[Math.floor(Math.random() * normalTalks.length)];
   }
 
-  setTimeout(() => {
+  // 前のタイマーを削除
+  clearTimeout(dialogTimer);
+
+  // 新しいタイマーを設定
+  dialogTimer = setTimeout(() => {
     dialogBox.classList.add("hidden");
   }, 3000);
 };
