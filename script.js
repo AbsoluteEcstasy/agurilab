@@ -80,6 +80,8 @@ document.getElementById("talkBtn").onclick = () => {
 };
 
 document.getElementById("playBtn").onclick = () => {
+
+  document.getElementById("playBg").src = "play.png";
   showScreen("play");
 
   playDialog.innerText = "いくわよ？じゃーんけーん…";
@@ -99,6 +101,15 @@ function playJanken(player){
 
   const hands = ["グー","チョキ","パー"];
   const aguri = hands[Math.floor(Math.random() * 3)];
+  const bg = document.getElementById("playBg");
+
+if(aguri === "グー"){
+  bg.src = "play_gu.png";
+}else if(aguri === "チョキ"){
+  bg.src = "play_choki.png";
+}else{
+  bg.src = "play_pa.png";
+}
 
   document.getElementById("jankenButtons").innerHTML = `<button>${player}</button>`;
 
@@ -146,13 +157,13 @@ function renderGallery(){
   const grid = document.getElementById("galleryGrid");
   grid.innerHTML = "";
 
-  for(let i=1;i<=30;i++){
+  for(let i=1;i<=25;i++){
 
     const item = document.createElement("div");
     item.className = "galleryItem";
 
     const isUnlocked = unlocked.includes(i);
-    const cost = i >= 25 ? 100 : 10;
+    const cost = i >= 13 ? 100 : 10;
 
     if(isUnlocked){
 
