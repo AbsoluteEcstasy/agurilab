@@ -98,13 +98,16 @@ let tapGameActive = false;
 let timerInterval = null;
 
 // 実験開始
-document.getElementById("game-start-btn").addEventListener("click", () => {
+document.getElementById("tap-area").addEventListener("touchstart", (e) => {
 
-  showScreen("game-screen");
+  if (!tapGameActive) return;
 
-  startTapGame();
+  tapCount += e.touches.length;
 
-});
+  document.getElementById("tap-count").textContent =
+    tapCount + " TAP";
+
+}, { passive: true });
 
 function startTapGame() {
 
