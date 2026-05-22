@@ -74,7 +74,14 @@ document.getElementById("talk-btn").addEventListener("click", () => {
 document.getElementById("game-btn").addEventListener("click", () => {
   showScreen("game-info-screen");
 });
+// 実験開始
+document.getElementById("game-start-btn").addEventListener("click", () => {
 
+  showScreen("game-screen");
+
+  startTapGame();
+
+});
 // ギャラリーへ
 document.getElementById("gallery-btn").addEventListener("click", () => {
   createGallery();
