@@ -145,3 +145,42 @@ input {
 .locked {
   opacity: 0.4;
 }
+
+.game-tap-area {
+  width: 100%;
+  max-width: 430px;
+  height: 75vh;
+
+  margin: auto;
+
+  background: white;
+
+  border-radius: 20px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+.tap-image {
+  width: 80%;
+  max-width: 300px;
+}
+
+#timer-text {
+  font-size: 60px;
+  margin: 10px 0;
+}
+
+#tap-count {
+  font-size: 32px;
+  font-weight: bold;
+}

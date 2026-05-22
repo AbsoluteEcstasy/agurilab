@@ -37,7 +37,7 @@
       PT: <span id="pt-text">0</span>
     </div>
 
-    <img src="aguri.png" class="aguri-image">
+    <img src="zaguri.png" class="aguri-image">
 
     <div class="menu-buttons">
       <button id="talk-btn" class="main-btn">話す</button>
@@ -57,12 +57,12 @@
       <h2>実験説明</h2>
 
       <p>
-        上から落ちてくる毒薬が、<br>
-        勝利にぶつかる前にタップで止めよう！
+        10秒間で、画面を<br>
+        できるだけタップ！
       </p>
 
       <p>
-        ギリギリなほど高得点！
+        沢山ビクンビクンさせよう！
       </p>
 
       <button id="game-start-btn" class="main-btn">
@@ -76,24 +76,21 @@
   </section>
 
   <!-- ゲーム -->
-  <section id="game-screen" class="screen">
+ <section id="game-screen" class="screen">
 
-    <div class="game-area">
+  <div class="game-tap-area" id="tap-area">
 
-      <img src="poison.png" id="poison">
+    <img src="shori.png" class="tap-image">
 
-      <img src="shori.png" id="target">
+    <h2 id="timer-text">10</h2>
 
-    </div>
+    <p id="tap-count">0 TAP</p>
 
-    <p id="game-result"></p>
+  </div>
 
-    <button id="stop-btn" class="main-btn">
-      止める
-    </button>
+  <p id="game-result"></p>
 
-  </section>
-
+</section>
   <!-- ギャラリー -->
   <section id="gallery-screen" class="screen">
 

@@ -89,89 +89,110 @@ document.querySelectorAll(".back-btn").forEach(btn => {
 });
 
 // ゲーム
-const poison = document.getElementById("poison");
-const target = document.getElementById("target");
+let tapCount = 0;
 
-let poisonY = 0;
-let speed = 0;
-let gameLoop = null;
+let timeLeft = 10;
 
-document.getElementById("game-start-btn").addEventListener("click", startGame);
+let tapGameActive = false;
 
-function startGame() {
+let timerInterval = null;
+
+// 実験開始
+document.getElementById("game-start-btn").addEventListener("click", () => {
 
   showScreen("game-screen");
 
-  poisonY = 0;
+  startTapGame();
 
-  poison.style.top = "0px";
+});
 
-  speed = Math.random() * 5 + 3;
+function startTapGame() {
 
-  document.getElementById("game-result").textContent = "";
+  tapCount = 0;
 
-  gameLoop = setInterval(() => {
+  timeLeft = 10;
 
-    poisonY += speed;
+  tapGameActive = true;
 
-    poison.style.top = poisonY + "px";
+  document.getElementById("tap-count").textContent =
+    "0 TAP";
 
-    const targetTop = 470;
+  document.getElementById("timer-text").textContent =
+    timeLeft;
 
-    if (poisonY >= targetTop) {
+  document.getElementById("game-result").textContent =
+    "";
 
-      clearInterval(gameLoop);
+  timerInterval = setInterval(() => {
 
-      document.getElementById("game-result").textContent =
-        "失敗… 0pt";
+    timeLeft--;
+
+    document.getElementById("timer-text").textContent =
+      timeLeft;
+
+    if (timeLeft <= 0) {
+
+      endTapGame();
 
     }
 
-  }, 16);
+  }, 1000);
 
 }
 
-document.getElementById("stop-btn").addEventListener("click", () => {
+// タップ
+document.getElementById("tap-area").addEventListener("click", () => {
 
-  clearInterval(gameLoop);
+  if (!tapGameActive) return;
 
-  const poisonRect = poison.getBoundingClientRect();
+  tapCount++;
 
-  const targetRect = target.getBoundingClientRect();
+  document.getElementById("tap-count").textContent =
+    tapCount + " TAP";
 
-  const distance =
-    targetRect.top - poisonRect.bottom;
+});
 
-  let gained = 0;
+// 終了
+function endTapGame() {
 
-  // 当たった
-  if (distance < 0) {
+  clearInterval(timerInterval);
 
-    gained = 0;
+  tapGameActive = false;
+
+  let gained = 1;
+
+  let comment = "";
+
+  if (tapCount >= 300) {
+
+    gained = 50;
+
+    comment =
+      "すごい…指、大丈夫ですか…？";
 
   }
-  // 超ギリギリ
-  else if (distance <= 10) {
+  else if (tapCount >= 200) {
 
-    gained = 30;
+    gained = 20;
+
+    comment =
+      "かなり優秀ですね♪";
 
   }
-  // かなり近い
-  else if (distance <= 35) {
+  else if (tapCount >= 100) {
 
     gained = 10;
 
-  }
-  // 普通
-  else if (distance <= 80) {
-
-    gained = 2;
+    comment =
+      "悪くない結果です♪";
 
   }
-  // 遠い
   else {
 
-    gained = 0;
+    gained = 1;
+
+    comment =
+      "もっと頑張ってくださいね？";
 
   }
 
@@ -181,16 +202,20 @@ document.getElementById("stop-btn").addEventListener("click", () => {
 
   saveData();
 
-  document.getElementById("game-result").textContent =
-    gained + "pt 獲得！";
+  document.getElementById("game-result").innerHTML =
+    `
+    ${tapCount} TAP<br>
+    ${gained}pt獲得！<br><br>
+    ${comment}
+    `;
 
   setTimeout(() => {
 
     showScreen("lab-screen");
 
-  }, 1500);
+  }, 4000);
 
-});
+}
 
 
 // ギャラリー
