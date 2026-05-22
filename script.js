@@ -1,7 +1,8 @@
 const PASSWORD = "a";
 
 let dialogTimer = null;
-
+let currentPage = 1;
+const itemsPerPage = 12;
 const screens = {
   password: document.getElementById("passwordScreen"),
   title: document.getElementById("titleScreen"),
@@ -157,7 +158,10 @@ function renderGallery(){
   const grid = document.getElementById("galleryGrid");
   grid.innerHTML = "";
 
-  for(let i=1;i<=25;i++){
+  const start = (currentPage - 1) * itemsPerPage + 1;
+const end = Math.min(start + itemsPerPage - 1, 15);
+
+for(let i = start; i <= end; i++){
 
     const item = document.createElement("div");
     item.className = "galleryItem";
@@ -176,7 +180,7 @@ function renderGallery(){
         };
 
       }else{
-        item.innerHTML = `かみんぐすーん`;
+        item.innerHTML = `comming soon`;
       }
 
     }else{
@@ -207,6 +211,8 @@ function renderGallery(){
 
     grid.appendChild(item);
   }
+  document.getElementById("pageText").innerText =
+  currentPage + " / 2";
 }
 
 document.getElementById("viewerClose").onclick = () => {
@@ -218,3 +224,16 @@ updatePt();
 document.addEventListener('touchmove', function(e) {
   e.preventDefault();
 }, { passive: false });
+document.getElementById("prevPageBtn").onclick = () => {
+  if(currentPage > 1){
+    currentPage--;
+    renderGallery();
+  }
+};
+
+document.getElementById("nextPageBtn").onclick = () => {
+  if(currentPage < 2){
+    currentPage++;
+    renderGallery();
+  }
+};

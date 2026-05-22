@@ -111,7 +111,7 @@ button{
 .dialog{
   position:absolute;
   left:50%;
-  top:50%;
+  top:68%;
   transform:translate(-50%,-50%);
   width:88%;
   min-height:120px;
@@ -220,4 +220,18 @@ button{
   right:25px;
   color:white;
   font-size:40px;
+}
+.galleryPageControls{
+  position:absolute;
+  bottom:13%;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  color:white;
+}
+
+.galleryPageControls button{
+  width:60px;
 }
