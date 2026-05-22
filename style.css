@@ -117,7 +117,7 @@ button{
   min-height:120px;
 
   /* ← 透明度を上げる（薄くする） */
-  background:rgba(0,0,0,0.55);
+  background:rgba(0,0,0,0.45);
 
   border:2px solid #3cff7a;
   color:white;

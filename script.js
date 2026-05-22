@@ -2,7 +2,7 @@ const PASSWORD = "a";
 
 let dialogTimer = null;
 let currentPage = 1;
-const itemsPerPage = 12;
+const itemsPerPage = 9;
 const screens = {
   password: document.getElementById("passwordScreen"),
   title: document.getElementById("titleScreen"),
@@ -159,7 +159,7 @@ function renderGallery(){
   grid.innerHTML = "";
 
   const start = (currentPage - 1) * itemsPerPage + 1;
-const end = Math.min(start + itemsPerPage - 1, 15);
+const end = Math.min(start + itemsPerPage - 1, 18);
 
 for(let i = start; i <= end; i++){
 
@@ -167,7 +167,7 @@ for(let i = start; i <= end; i++){
     item.className = "galleryItem";
 
     const isUnlocked = unlocked.includes(i);
-    const cost = i >= 13 ? 100 : 10;
+    const cost = i >= 16 ? 100 : 10;
 
     if(isUnlocked){
 
