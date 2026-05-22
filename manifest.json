@@ -1,15 +1,9 @@
 {
-  "name": "榊あぐり",
-  "short_name": "あぐり",
+  "name": "Aguri",
+  "short_name": "Aguri",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#111111",
+  "theme_color": "#08140b",
   "start_url": "./index.html",
-  "icons": [
-    {
-      "src": "zicon.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "icons": []
 }

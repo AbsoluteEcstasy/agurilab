@@ -2,91 +2,79 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
   <title>榊あぐり</title>
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-
-  <!-- iPhone PWA -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#111111">
+  <meta name="theme-color" content="#08140b">
 
-  <link rel="apple-touch-icon" href="zicon.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- パスワード -->
-  <div id="passwordScreen" class="screen">
-    <div class="passwordBox">
-      <h1>ENTER</h1>
-      <input type="password" id="passwordInput" placeholder="Password">
-      <button id="passwordBtn">入室</button>
-    </div>
+<div id="passwordScreen" class="screen active">
+  <div class="overlayBox">
+    <h1>SECRET ACCESS</h1>
+    <p>パスワードを入力してください</p>
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button id="passwordBtn">入室</button>
+    <p id="passwordError"></p>
+  </div>
+</div>
+
+<div id="titleScreen" class="screen">
+  <img src="title.png" class="bg">
+  <button id="startBtn" class="mainBtn">入る</button>
+</div>
+
+<div id="mainScreen" class="screen">
+  <img src="zaguri.png" class="bg">
+
+  <div id="ptDisplay">0 pt</div>
+
+  <div class="buttonRow">
+    <button id="talkBtn">話す</button>
+    <button id="playBtn">遊ぶ</button>
+    <button id="galleryBtn">ギャラリー</button>
   </div>
 
-  <!-- タイトル -->
-  <div id="titleScreen" class="screen hidden">
-    <img src="title.png" class="bg">
-    <button id="startBtn" class="mainButton">入る</button>
+  <div id="dialogBox" class="dialog hidden"></div>
+</div>
+
+<div id="playScreen" class="screen">
+  <img src="play.png" class="bg">
+
+  <div id="playDialog" class="dialog">
+    あぐりとじゃんけんしよう。何を出すか選んでね
   </div>
 
-  <!-- メイン -->
-  <div id="mainScreen" class="screen hidden">
-    <img src="zaguri.png" class="bg">
-
-    <div class="ptBox">
-      PT: <span id="ptText">0</span>
-    </div>
-
-    <div class="menuButtons">
-      <button id="talkBtn">話す</button>
-      <button id="playBtn">遊ぶ</button>
-      <button id="galleryBtn">ギャラリー</button>
-    </div>
-
-    <div id="dialogueBox" class="dialogue hidden"></div>
+  <div class="buttonRow" id="jankenButtons">
+    <button onclick="playJanken('グー')">グー</button>
+    <button onclick="playJanken('チョキ')">チョキ</button>
+    <button onclick="playJanken('パー')">パー</button>
   </div>
 
-  <!-- じゃんけん -->
-  <div id="playScreen" class="screen hidden">
-    <img src="play.png" class="bg">
+  <button id="backMainBtn" class="subBtn">戻る</button>
+</div>
 
-    <div class="dialogue" id="playDialogue">
-      あぐりとじゃんけんしよう。<br>
-      何を出すか選んでね
-    </div>
-
-    <div class="handButtons" id="handButtons">
-      <button onclick="playGame('グー')">グー</button>
-      <button onclick="playGame('チョキ')">チョキ</button>
-      <button onclick="playGame('パー')">パー</button>
-    </div>
-
-    <button class="backButton" onclick="backMain()">戻る</button>
+<div id="galleryScreen" class="screen">
+  <div class="galleryHeader">
+    <span>ギャラリー</span>
+    <span id="galleryPt">0 pt</span>
   </div>
 
-  <!-- ギャラリー -->
-  <div id="galleryScreen" class="screen hidden">
+  <div id="galleryGrid"></div>
 
-    <div class="galleryTop">
-      <div>GALLERY</div>
-      <div>PT: <span id="galleryPt">0</span></div>
-    </div>
+  <button id="galleryBackBtn" class="subBtn">戻る</button>
+</div>
 
-    <div id="galleryGrid" class="galleryGrid"></div>
+<div id="imageViewer" class="hidden">
+  <div id="viewerClose">×</div>
+  <img id="viewerImg">
+</div>
 
-    <button class="backButton" onclick="backMain()">戻る</button>
-  </div>
-
-  <!-- 拡大表示 -->
-  <div id="viewer" class="viewer hidden">
-    <img id="viewerImg">
-  </div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
