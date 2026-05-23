@@ -89,11 +89,13 @@ function unlockAchievement(id){
 
   popup.classList.remove("hidden");
 
-  setTimeout(() => {
-    popup.classList.add("hidden");
-  }, 3000);
+setTimeout(() => {
+  popup.classList.add("hidden");
+}, 3000);
 
+if(document.getElementById("achievementList")){
   renderAchievements();
+}
 }
 
 document.getElementById("achievementBtn").onclick = () => {
@@ -140,17 +142,6 @@ function renderAchievements(){
   });
 }
 
-unlockAchievement("talk1");
-
-if(talkCount >= 100){
-  unlockAchievement("talk100");
-}
-
-unlockAchievement("gallery1");
-
-if(unlocked.length >= 18){
-  unlockAchievement("galleryAll");
-}
 
 let dialogTimer = null;
 let currentPage = 1;
@@ -456,8 +447,16 @@ for(let i = start; i <= end; i++){
         e.stopPropagation();
 
         if(pt >= cost){
-          pt -= cost;
-          unlocked.push(i);
+
+  pt -= cost;
+
+  unlocked.push(i);
+
+  unlockAchievement("gallery1");
+
+  if(unlocked.length >= 18){
+    unlockAchievement("galleryAll");
+  }
           saveData();
           updatePt();
           renderGallery();
