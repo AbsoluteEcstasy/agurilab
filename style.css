@@ -255,3 +255,78 @@ button{
 .galleryPageControls button{
   width:60px;
 }
+#achievementBtn{
+  position:absolute;
+
+  top:calc(env(safe-area-inset-top) + 12px);
+  left:5%;
+
+  width:55px;
+  height:55px;
+
+  border-radius:50%;
+  font-size:28px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(0,0,0,0.8);
+  z-index:50;
+}
+
+#achievementList{
+  padding:
+    calc(env(safe-area-inset-top) + 90px)
+    20px
+    120px;
+
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+
+  overflow-y:auto;
+  height:100%;
+}
+
+.achievementItem{
+  background:#111;
+  border:2px solid #3cff7a;
+  border-radius:16px;
+
+  padding:18px;
+
+  color:white;
+  font-size:18px;
+}
+
+.achievementLocked{
+  opacity:0.5;
+}
+
+#achievementPopup{
+  position:fixed;
+
+  top:20%;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:85%;
+
+  background:rgba(0,0,0,0.92);
+
+  border:2px solid gold;
+
+  color:white;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  text-align:center;
+
+  z-index:9999;
+
+  font-size:20px;
+}

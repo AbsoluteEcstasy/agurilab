@@ -1,5 +1,157 @@
 const PASSWORD = "a";
 
+let playCount = Number(localStorage.getItem("playCount")) || 0;
+
+let winStreak = 0;
+let loseStreak = 0;
+let drawStreak = 0;
+
+let achievements =
+JSON.parse(localStorage.getItem("achievements")) || [];
+
+const achievementData = [
+
+{
+  id:"talk1",
+  name:"初めての会話",
+  desc:"初めてあぐりと会話した"
+},
+
+{
+  id:"play1",
+  name:"初めてのじゃんけん",
+  desc:"初めてあぐりと遊んだ"
+},
+
+{
+  id:"gallery1",
+  name:"初めてのイラスト",
+  desc:"初めてギャラリーを開放した"
+},
+
+{
+  id:"talk100",
+  name:"おしゃべり好き",
+  desc:"あぐりと100回話した"
+},
+
+{
+  id:"play100",
+  name:"じゃんけん好き",
+  desc:"あぐりと100回遊んだ"
+},
+
+{
+  id:"galleryAll",
+  name:"イラストコレクター",
+  desc:"ギャラリーを全開放した"
+},
+
+{
+  id:"win5",
+  name:"豪運",
+  desc:"じゃんけんで5連勝した"
+},
+
+{
+  id:"lose5",
+  name:"逆に豪運",
+  desc:"じゃんけんで5連敗した"
+},
+
+{
+  id:"draw5",
+  name:"以心伝心",
+  desc:"じゃんけんで5連続あいこになった"
+}
+
+];
+
+function unlockAchievement(id){
+
+  if(achievements.includes(id)) return;
+
+  achievements.push(id);
+
+  localStorage.setItem(
+    "achievements",
+    JSON.stringify(achievements)
+  );
+
+  const achievement =
+    achievementData.find(a => a.id === id);
+
+  const popup =
+    document.getElementById("achievementPopup");
+
+  popup.innerHTML =
+    `実績「${achievement.name}」を獲得しました！`;
+
+  popup.classList.remove("hidden");
+
+  setTimeout(() => {
+    popup.classList.add("hidden");
+  }, 3000);
+
+  renderAchievements();
+}
+
+document.getElementById("achievementBtn").onclick = () => {
+
+  showScreen("achievement");
+
+  renderAchievements();
+};
+
+document.getElementById("achievementBackBtn").onclick = () => {
+
+  showScreen("main");
+};
+
+function renderAchievements(){
+
+  const list =
+    document.getElementById("achievementList");
+
+  list.innerHTML = "";
+
+  achievementData.forEach(a => {
+
+    const item = document.createElement("div");
+
+    item.className = "achievementItem";
+
+    if(achievements.includes(a.id)){
+
+      item.innerHTML = a.name;
+
+      item.onclick = () => {
+        alert(a.desc);
+      };
+
+    }else{
+
+      item.classList.add("achievementLocked");
+
+      item.innerHTML = "？？？";
+    }
+
+    list.appendChild(item);
+  });
+}
+
+unlockAchievement("talk1");
+
+if(talkCount >= 100){
+  unlockAchievement("talk100");
+}
+
+unlockAchievement("gallery1");
+
+if(unlocked.length >= 18){
+  unlockAchievement("galleryAll");
+}
+
 let dialogTimer = null;
 let currentPage = 1;
 const itemsPerPage = 9;
@@ -172,6 +324,15 @@ document.getElementById("backMainBtn").onclick = () => {
 
 function playJanken(player){
 
+  playCount++;
+  localStorage.setItem("playCount", playCount);
+
+  unlockAchievement("play1");
+
+  if(playCount >= 100){
+    unlockAchievement("play100");
+  }
+
   const hands = ["グー","チョキ","パー"];
   const aguri = hands[Math.floor(Math.random() * 3)];
   const bg = document.getElementById("playBg");
@@ -189,19 +350,44 @@ if(aguri === "グー"){
   let result = "";
   let gain = 0;
 
-  if(player === aguri){
-    result = "「あら、気が合うわね」";
-    gain = 2;
+ if(player === aguri){
+
+  result = "あら、気が合うわね";
+  gain = 2;
+
+  drawStreak++;
+  winStreak = 0;
+  loseStreak = 0;
+
+  if(drawStreak >= 5){
+    unlockAchievement("draw5");
+  }
   }else if(
     (player === "グー" && aguri === "チョキ") ||
     (player === "チョキ" && aguri === "パー") ||
     (player === "パー" && aguri === "グー")
   ){
-    result = "「あなたの勝ちよ」";
-    gain = 5;
+    result = "あなたの勝ちよ";
+gain = 5;
+
+winStreak++;
+loseStreak = 0;
+drawStreak = 0;
+
+if(winStreak >= 5){
+  unlockAchievement("win5");
+}
   }else{
-    result = "「ふふっ、私の勝ち」";
-    gain = 1;
+   result = "ふふっ、私の勝ち";
+gain = 1;
+
+loseStreak++;
+winStreak = 0;
+drawStreak = 0;
+
+if(loseStreak >= 5){
+  unlockAchievement("lose5");
+}
   }
 
   pt += gain;
