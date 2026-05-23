@@ -160,7 +160,9 @@ const screens = {
   title: document.getElementById("titleScreen"),
   main: document.getElementById("mainScreen"),
   play: document.getElementById("playScreen"),
-  gallery: document.getElementById("galleryScreen")
+  gallery: document.getElementById("galleryScreen"),
+
+  achievement: document.getElementById("achievementScreen")
 };
 
 const dialogBox = document.getElementById("dialogBox");
