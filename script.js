@@ -117,34 +117,55 @@ function renderAchievements(){
 
   list.innerHTML = "";
 
-  achievementData.forEach(a => {
+ const start =
+  (achievementPage - 1) * achievementsPerPage;
 
-    const item = document.createElement("div");
+const end =
+  start + achievementsPerPage;
 
-    item.className = "achievementItem";
+const currentAchievements =
+  achievementData.slice(start, end);
 
-    if(achievements.includes(a.id)){
+currentAchievements.forEach(a => {
 
-      item.innerHTML = a.name;
+  const item = document.createElement("div");
 
-      item.onclick = () => {
-        alert(a.desc);
-      };
+  item.className = "achievementItem";
 
-    }else{
+  if(achievements.includes(a.id)){
 
-      item.classList.add("achievementLocked");
+    item.innerHTML = a.name;
 
-      item.innerHTML = "？？？";
-    }
+    item.onclick = () => {
+      alert(a.desc);
+    };
 
-    list.appendChild(item);
-  });
+  }else{
+
+    item.classList.add("achievementLocked");
+
+    item.innerHTML = "？？？";
+  }
+
+  list.appendChild(item);
+});
+
+const totalPages =
+  Math.ceil(
+    achievementData.length / achievementsPerPage
+  );
+
+document.getElementById(
+  "achievementPageText"
+).innerText =
+  achievementPage + " / " + totalPages;
 }
 
 
 let dialogTimer = null;
 let currentPage = 1;
+let achievementPage = 1;
+const achievementsPerPage = 6;
 const itemsPerPage = 9;
 const screens = {
   password: document.getElementById("passwordScreen"),
@@ -494,5 +515,35 @@ document.getElementById("nextPageBtn").onclick = () => {
   if(currentPage < 2){
     currentPage++;
     renderGallery();
+  }
+};
+
+document.getElementById(
+  "achievementPrevBtn"
+).onclick = () => {
+
+  if(achievementPage > 1){
+
+    achievementPage--;
+
+    renderAchievements();
+  }
+};
+
+document.getElementById(
+  "achievementNextBtn"
+).onclick = () => {
+
+  const totalPages =
+    Math.ceil(
+      achievementData.length /
+      achievementsPerPage
+    );
+
+  if(achievementPage < totalPages){
+
+    achievementPage++;
+
+    renderAchievements();
   }
 };
