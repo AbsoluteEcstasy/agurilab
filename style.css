@@ -242,14 +242,29 @@ button{
   font-size:40px;
 }
 .galleryPageControls{
+
   position:absolute;
+
   bottom:13%;
+
   width:100%;
+
   display:flex;
-  justify-content:center;
+
+  justify-content:space-between;
+
   align-items:center;
-  gap:20px;
+
+  padding:0 30px;
+
+  box-sizing:border-box;
+
   color:white;
+}
+
+#achievementPageText{
+  color:white;
+  font-size:18px;
 }
 
 .galleryPageControls button{
