@@ -339,3 +339,32 @@ button{
 
   font-size:20px;
 }
+
+.achievementPageControls{
+
+  position:absolute;
+
+  bottom:13%;
+
+  width:100%;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:20px;
+
+  color:white;
+}
+
+#achievementPrevBtn,
+#achievementNextBtn{
+  min-width:70px;
+}
+
+#achievementPageText{
+  color:white;
+  font-size:18px;
+}
