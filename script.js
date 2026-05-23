@@ -23,14 +23,43 @@ const normalTalks = [
   "あなたと話すの、嫌いじゃないわ",
   "ふふっ、何を考えてるの？",
   "次は勝利に何をしましょうか",
-  "お腹が空いたわね……",
   "今日は少し機嫌がいいの",
   "閣下はお元気かしら",
   "今日のノルマは済んだ？",
   "そんなに私が気になる？",
   "データが足りないわ",
   "年齢？……秘密よ",
-  "実験開始よ"
+  "さあ、実験開始よ"
+];
+
+const morningTalks = [
+  "おはよう。今日もよろしく頼むわ",
+  "朝から来るなんて、熱心ね",
+  "ふふっ、眠そうな顔"
+];
+
+const noonTalks = [
+  "データの整理をしてくるわ",
+  "午後も頑張りましょう",
+  "勝利の様子でも見に行こうかしら"
+];
+
+const eveningTalks = [
+  "今日もお疲れ様",
+  "明日は何から始めようかしら……",
+  "夕焼けが綺麗ね。ピンク色だけど"
+];
+
+const nightTalks = [
+  "夜は少し素直になれる気がするの",
+  "静かな時間ね。悪くないわ",
+  "ええ、また明日。"
+];
+
+const lateNightTalks = [
+  "あら、まだ起きてたの？",
+  "夜更かしは美容の敵よ",
+  "眠れないの？……仕方ないわね"
 ];
 
 function saveData(){
@@ -71,9 +100,47 @@ document.getElementById("talkBtn").onclick = () => {
   dialogBox.classList.remove("hidden");
 
   if(talkCount === 100){
-    dialogBox.innerText = "100回も会いに来るなんて…本当に物好きね。";
+    dialogBox.innerText = "100回も会いに来るなんて…本当に物好きね";
   }else{
-    dialogBox.innerText = normalTalks[Math.floor(Math.random() * normalTalks.length)];
+   const hour = new Date().getHours();
+
+let timeTalks = [];
+
+if(hour >= 5 && hour <= 10){
+
+  // 朝 5:00~10:59
+  timeTalks = morningTalks;
+
+}else if(hour >= 11 && hour <= 15){
+
+  // 昼 11:00~15:59
+  timeTalks = noonTalks;
+
+}else if(hour >= 16 && hour <= 18){
+
+  // 夕 16:00~18:59
+  timeTalks = eveningTalks;
+
+}else if(hour >= 19 && hour <= 22){
+
+  // 夜 19:00~22:59
+  timeTalks = nightTalks;
+
+}else{
+
+  // 深夜 23:00~4:59
+  timeTalks = lateNightTalks;
+}
+
+// 通常＋時間帯セリフを合体
+const mixedTalks = [
+  ...normalTalks,
+  ...timeTalks
+];
+
+// ランダム表示
+dialogBox.innerText =
+  mixedTalks[Math.floor(Math.random() * mixedTalks.length)];
   }
 
   // 前のタイマーを削除
