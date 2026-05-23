@@ -242,29 +242,23 @@ button{
   font-size:40px;
 }
 .galleryPageControls{
-
   position:absolute;
-
   bottom:13%;
-
   width:100%;
-
   display:flex;
-
-  justify-content:space-between;
-
+  justify-content:center;
   align-items:center;
-
-  padding:0 30px;
-
-  box-sizing:border-box;
-
+  gap:20px;
   color:white;
 }
 
 #achievementPageText{
   color:white;
   font-size:18px;
+}
+#achievementPrevBtn,
+#achievementNextBtn{
+  min-width:70px;
 }
 
 .galleryPageControls button{
